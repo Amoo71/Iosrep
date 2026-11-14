@@ -2,6 +2,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 import CoreMotion
 import AVFoundation
+import UIKit
 
 struct WallpaperLayer: Identifiable, Codable {
     var id = UUID()
@@ -29,7 +30,7 @@ struct Keyframe: Identifiable, Codable {
 }
 
 struct ProjectDocument: FileDocument {
-    static var readableContentTypes: [UTType] { [.json] }
+    static var readableContentTypes: [UTType] { [.json, .tendiesDraft] }
     var data: Data
     init(data: Data) { self.data = data }
     init(configuration: ReadConfiguration) throws {
@@ -101,7 +102,7 @@ struct EditorView: View {
                           onCompletion: importFiles)
             .fileExporter(isPresented: $showingExporter,
                           document: exportDocument,
-                          contentType: .json,
+                          contentType: .tendiesDraft,
                           defaultFilename: "Mein-Wallpaper.tendies",
                           onCompletion: { result in
                               switch result { case .success: status = "Projekt exportiert."; case .failure: status = "Export abgebrochen." }
@@ -338,4 +339,9 @@ private extension JSONEncoder {
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         return encoder
     }
+}
+
+
+private extension UTType {
+    static var tendiesDraft: UTType { UTType(filenameExtension: "tendies") ?? .json }
 }
