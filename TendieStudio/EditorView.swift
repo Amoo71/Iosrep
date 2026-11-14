@@ -87,16 +87,16 @@ struct EditorView: View {
             .navigationTitle("Tendie Studio")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
+                ToolbarItem(placement: .navigationBarLeading) {
                     Button { showingImporter = true } label: { Image(systemName: "plus") }
                 }
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button { exportProject() } label: { Image(systemName: "square.and.arrow.up") }
                         .disabled(layers.isEmpty)
                 }
             }
             .fileImporter(isPresented: $showingImporter,
-                          allowedContentTypes: [.image, .movie],
+                          allowedContentTypes: [.image],
                           allowsMultipleSelection: true,
                           onCompletion: importFiles)
             .fileExporter(isPresented: $showingExporter,
