@@ -315,7 +315,7 @@ struct EditorView: View {
                     selectedID = layer.id
                 }
                 guard let origin = scaleOrigins[layer.id] else { return }
-                updateLayer(layer.id) { $0.scale = min(4, max(0.15, origin * value)) }
+                updateLayer(layer.id) { $0.scale = min(4, max(0.15, origin * Double(value))) }
             }
             .onEnded { _ in scaleOrigins[layer.id] = nil }
     }
@@ -330,7 +330,7 @@ struct EditorView: View {
                     selectedID = layer.id
                 }
                 guard let origin = rotationOrigins[layer.id] else { return }
-                updateLayer(layer.id) { $0.rotation = origin + value.degrees }
+                updateLayer(layer.id) { $0.rotation = origin + Double(value.degrees) }
             }
             .onEnded { _ in rotationOrigins[layer.id] = nil }
     }
