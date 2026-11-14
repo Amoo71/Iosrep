@@ -3,7 +3,9 @@ name: Build unsigned iOS IPA
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches:
+      - main
+      - "rebuild/**"
 
 jobs:
   build:
@@ -38,12 +40,12 @@ jobs:
           test -d "$APP"
           mkdir -p Payload
           cp -R "$APP" Payload/
-          /usr/bin/zip -qry TendieStudio-v1-unsigned.ipa Payload
+          /usr/bin/zip -qry TendieStudio-rebuild-unsigned.ipa Payload
 
       - name: Upload IPA
         uses: actions/upload-artifact@v4
         with:
-          name: TendieStudio-v1-unsigned-IPA
-          path: TendieStudio-v1-unsigned.ipa
+          name: TendieStudio-rebuild-unsigned-IPA
+          path: TendieStudio-rebuild-unsigned.ipa
           if-no-files-found: error
           retention-days: 14
