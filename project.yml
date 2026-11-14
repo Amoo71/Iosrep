@@ -12,7 +12,7 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.amoo71.tendiestudio
-        PRODUCT_NAME: Tendie Studio
+        PRODUCT_NAME: TendieStudio
         INFOPLIST_KEY_CFBundleDisplayName: Tendie Studio
         INFOPLIST_KEY_NSPhotoLibraryUsageDescription: Importiere Bilder und GIFs für deine Wallpaper-Projekte.
         INFOPLIST_KEY_UIFileSharingEnabled: YES
