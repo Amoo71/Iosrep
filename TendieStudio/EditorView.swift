@@ -164,8 +164,8 @@ struct EditorView: View {
                             .contentShape(Rectangle())
                             .gesture(DragGesture().onChanged { value in
                                 updateLayer(layer.id) {
-                                    $0.x += value.translation.width
-                                    $0.y += value.translation.height
+                                    $0.x = layer.x + value.translation.width
+                                    $0.y = layer.y + value.translation.height
                                 }
                             })
                             .onTapGesture { selectedID = layer.id }
