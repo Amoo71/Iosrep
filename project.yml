@@ -1,0 +1,23 @@
+name: TendieStudio
+options:
+  bundleIdPrefix: com.amoo71
+  deploymentTarget:
+    iOS: "16.0"
+targets:
+  TendieStudio:
+    type: application
+    platform: iOS
+    sources:
+      - path: TendieStudio
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.amoo71.tendiestudio
+        PRODUCT_NAME: Tendie Studio
+        INFOPLIST_KEY_CFBundleDisplayName: Tendie Studio
+        INFOPLIST_KEY_NSPhotoLibraryUsageDescription: Importiere Bilder und GIFs für deine Wallpaper-Projekte.
+        INFOPLIST_KEY_UIFileSharingEnabled: YES
+        INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace: YES
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "1"
+        IPHONEOS_DEPLOYMENT_TARGET: "16.0"
+        GENERATE_INFOPLIST_FILE: YES
