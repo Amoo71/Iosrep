@@ -104,7 +104,7 @@ struct EditorView: View {
                           contentType: .json,
                           defaultFilename: "Mein-Wallpaper.tendies",
                           onCompletion: { result in
-                              status = result.isSuccess ? "Projekt exportiert." : "Export abgebrochen."
+                              switch result { case .success: status = "Projekt exportiert."; case .failure: status = "Export abgebrochen." }
                           })
             .onAppear { motion.start() }
             .onDisappear { motion.stop() }
@@ -196,9 +196,11 @@ struct EditorView: View {
                 Text("\(layers.count) Elemente").font(.caption).foregroundStyle(.secondary)
             }
             if layers.isEmpty {
-                ContentUnavailableView("Noch keine Ebenen", systemImage: "square.stack.3d.up",
-                                       description: Text("Tippe oben auf + und importiere ein Bild oder GIF."))
-                    .frame(height: 76)
+                VStack(spacing: 6) {
+                    Image(systemName: "square.stack.3d.up").font(.title2)
+                    Text("Tippe oben auf + und importiere ein Bild oder GIF.")
+                        .font(.caption).foregroundStyle(.secondary)
+                }.frame(maxWidth: .infinity).frame(height: 76)
             } else {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
